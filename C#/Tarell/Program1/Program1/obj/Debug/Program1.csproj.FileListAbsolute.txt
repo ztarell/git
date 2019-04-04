@@ -1,0 +1,12 @@
+c:\users\ztare\onedrive\documents\visual studio 2015\Projects\Program1\Program1\bin\Debug\Program1.exe.config
+c:\users\ztare\onedrive\documents\visual studio 2015\Projects\Program1\Program1\bin\Debug\Program1.exe
+c:\users\ztare\onedrive\documents\visual studio 2015\Projects\Program1\Program1\bin\Debug\Program1.pdb
+c:\users\ztare\onedrive\documents\visual studio 2015\Projects\Program1\Program1\obj\Debug\Program1.csprojResolveAssemblyReference.cache
+c:\users\ztare\onedrive\documents\visual studio 2015\Projects\Program1\Program1\obj\Debug\Program1.exe
+c:\users\ztare\onedrive\documents\visual studio 2015\Projects\Program1\Program1\obj\Debug\Program1.pdb
+F:\C#\Tarell\Program1\Program1\bin\Debug\Program1.exe.config
+F:\C#\Tarell\Program1\Program1\obj\Debug\Program1.exe
+F:\C#\Tarell\Program1\Program1\obj\Debug\Program1.pdb
+F:\C#\Tarell\Program1\Program1\bin\Debug\Program1.exe
+F:\C#\Tarell\Program1\Program1\bin\Debug\Program1.pdb
+F:\C#\Tarell\Program1\Program1\obj\Debug\Program1.csprojResolveAssemblyReference.cache

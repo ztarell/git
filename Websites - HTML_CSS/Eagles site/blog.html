@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<title>2016 Eagles Blog</title>
+		<link rel="shortcut icon" href="favicon.ico" />
+		<link rel="apple-touch-icon" href="apple-icon-114x114.png" />
+		<link href="https://fonts.googleapis.com/css?family=Proza+Libre" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Ruslan+Display" rel="stylesheet">
+		<link rel="stylesheet" href="labstyles.css">
+		<style>
+		div#bloghead {
+			margin: auto;
+			width: 96%;
+			
+		}
+			h1#bloghead1 {
+				line-height: 2em;
+				text-align: center;
+				margin: 1% 9%;
+				padding-left: 3em;
+			}
+			h2#bloghead2 {
+				text-decoration: underline;
+				text-align: center;
+				margin: 1% 6%;
+				padding-left: 5em;
+			}
+			img.blogleft {
+				width: 200px;
+				position:absolute;
+				float: left;
+				clear: right;
+			}
+			img.blogright {
+				width: 200px;
+				position:relative;
+				float: right;
+				clear: left;
+			}
+			p.beforeform {
+				color: white;
+				background-color: black;
+				text-align: center;
+				line-height: 1.25em;
+				font-size: larger;
+			}
+			h3 {
+				background-color: gainsboro;
+			}
+			h3:hover {
+				font-size: xx-large;
+				background-color: seagreen;
+				color: white;
+				text-shadow: 3px 3px 5px black;
+			}
+			fieldset {
+				border: ridge;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header>
+			<hr>
+			<h1>PHILADELPHIA EAGLES 2016 SEASON</h1>
+			<h2>BLOG</h2>
+			<hr>
+		</header>
+		<nav>
+
+			<a href="index.html">HOME</a> | <a href="news.html">NEWS</a> | <a href="stats.html">STATS</a> | <a href="starters.html">STARTERS</a> | <a href="MyNotes.html">MyNOTES</a> | <a href="blog.html">BLOG</a>
+
+		</nav>
+		<div id="bloghead">
+			<img class="blogleft" src="eaglesleft.png" alt="Eagles Logo Left" width="200" height="155"/>
+			<img class="blogright" src="eaglesright.png" alt="Eagles Logo Right" width="200" height="155"/>
+			<h1 id="bloghead1">Join the Conversation</h1>
+			<h2 id="bloghead2">Sign Up and Answer the Weekly Question!</h2>
+			<br>
+		</div>
+		<blockquote>
+			<h3>This Week's Question:
+			<br>
+			How do you grade Pederson after the first half of the season?</h3>
+			<p class="beforeform">
+				If you already signed up...
+			</p>
+			<form id="EaglesBlogResponse" method="post" action="mailto:emailaddress@maildomain.ext">
+				<fieldset>
+					<legend>
+						Respond and Sign In
+					</legend>
+
+					<p>
+						<label>UserName:
+							<input type="text" name="username" id="username" placeholder="Enter UserName" required autofocus>
+						</label>
+					</p>
+					<p>
+						<label> How do you grade Pederson after the first half of the season?
+							<br>
+						</label>
+						<textarea cols="80" rows="5" placeholder="Stephen King, keep submissions under 100 words!"></textarea>
+					</p>
+					<p>
+						<label>Would you like to attach a file?
+							<input type="file" name="contactFile" id="contactFile">
+						</label>
+					</p>
+					<label>Email:
+						<input type="email" name="userEmail" id="userEmail">
+					</label>
+					<p>
+						<label>Password:
+							<input type="password" name="password" id="password" maxlength="8" placeholder="MAX 8">
+						</label>
+					</p>
+					<p>
+						<input type="submit" value="Send">
+
+					</p>
+					<p>
+						<input type="reset" value="Reset">
+					</p>
+					</p>
+				</fieldset>
+				<p class="beforeform">
+					If you haven't signed up yet...
+				</p>
+				<fieldset>
+					<legend>
+						Please Sign Up
+					</legend>
+					<p>
+						<label>Name:
+							<input type="text" name="contactName" id="contactName" placeholder="Enter Full Name">
+						</label>
+						<label>Phone:
+							<input type="text" name="contactPhone" id="contactPhone" placeholder="*optional">
+						</label>
+					<p>
+						Gender: <label>
+							<input type="radio" name="gender" value="male">
+							Male
+							<input type="radio" name="gender" value="female">
+							Female</label>
+					</p>
+					Age Group:
+					<ul>
+						<input type="radio" name="age_group[]" value="under24">
+						Under 24
+						<br>
+						<input type="radio" name="age_group[]" value="25-34">
+						25-34
+						<br>
+						<input type="radio" name="age_group[]" value="35-49">
+						35-49
+						<br>
+						<input type="radio" name="age_group[]" value="50-69">
+						50-69
+						<br>
+						<input type="radio" name="age_group[]" value="old">
+						Old
+						<br>
+					</ul>
+
+					With <strong>what</strong> and <strong>where</strong> do you <em>usually</em> search the web:
+					<ul id="websearch">
+						<input type="checkbox" name="web_search[]" value="laptop" checked="checked">
+						Laptop
+						<br>
+						<input type="checkbox" name="web_search[]" value="phone">
+						Phone
+						<br>
+						<input type="checkbox" name="web_search[]" value="tablet">
+						Tablet
+						<br>
+						<input type="checkbox" name="web_search[]" value="cpu">
+						Computer
+						<br>
+						<input type="checkbox" name="web_search[]" value="gameconsole">
+						Gaming Console
+						<br>
+						<input type="checkbox" name="web_search[]" value="athome"checked="checked">
+						At Home
+						<br>
+						<input type="checkbox" name="web_search[]" value="atwork">
+						At Work
+						<br>
+						<input type="checkbox" name="web_search[]" value="other">
+						Other
+						<br>
+					</ul>
+					<p>
+						<label>City:
+							<input type="text" name="contactCity" id="contactCity" maxlength="50"/>
+						</label>
+					</p>
+					<p>
+						<label>State:
+							<input type="text" list="State" name="contactState">
+							<datalist id="State">
+								<option value="AL"><option value="AK"><option value="AZ"><option value="AR"><option value="CA"><option value="CO"><option value="CT"><option value="DE"><option value="FL"><option value="HI"><option value="ID"><option value="IL"><option value="IN"><option value="IA"><option value="KS"><option value="KY"><option value="LA"><option value="MA"><option value="MD"><option value="ME"><option value="MI"><option value="MN"><option value="MO"><option value="MS"><option value="MT"><option value="NC"><option value="ND"><option value="NE"><option value="NH"><option value="NJ"><option value="NM"><option value="NV"><option value="NY"><option value="OH"><option value="OK"><option value="OR"><option value="PA"><option value="RI"><option value="SC"><option value="SD"><option value="TN"><option value="TX"><option value="UT"><option value="VA"><option value="VT"><option value="WA"><option value="WI"><option value="WV"><option value="WY">
+							</datalist> </label><label> Country:
+							<select name="country" id="country">
+								<option value="incountry">USA</option>
+								<option value="outcountry">Out of Country</option>
+							</select></label>
+					</p>
+					<p>
+						<label>Email:
+							<input type="email" name="userEmail" id="userEmail">
+						</label>
+					</p>
+					<p>
+						<label>Password:
+							<input type="password" name="password" id="password" maxlength="8" placeholder="MAX 8">
+					</p>
+					<p>
+						<input type="submit" value="Sign In">
+						<input type="reset" value="Start Over">
+					</p>
+		</blockquote>
+
+		</form>
+		<div>
+
+			<footer>
+
+				<p>
+					<a href="index.html">Back to the Home Page</a>
+				</p>
+				<p>
+					<a href="index.html#startSchedule">See 2016 Schedule</a>
+				</p>
+				<p>
+					<a href="index.html#startContact">Contact</a>
+				</p>
+
+				<p>
+					<h5>&copy; Copyright 2016 Brookhaven College</h5>
+				</p>
+			</footer>
+		</div>
+	</body>
+</html>

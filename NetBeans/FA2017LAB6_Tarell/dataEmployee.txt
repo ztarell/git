@@ -1,0 +1,4 @@
+
+Bill - White - 0012345 - Marketing department - 45000
+Nancy - Nguyen - 12234567 - Sale department - 40000 - Manager
+

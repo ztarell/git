@@ -1,0 +1,12 @@
+T:\CSharp\Tarell\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+T:\CSharp\Tarell\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+T:\CSharp\Tarell\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+T:\CSharp\Tarell\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+T:\CSharp\Tarell\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+T:\CSharp\Tarell\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+F:\C#\Tarell\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+F:\C#\Tarell\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+F:\C#\Tarell\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+F:\C#\Tarell\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+F:\C#\Tarell\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+F:\C#\Tarell\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache

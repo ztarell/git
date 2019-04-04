@@ -1,0 +1,15 @@
+T:\CSharp\Tarell\Project4\Utility\bin\Debug\Utility.dll
+T:\CSharp\Tarell\Project4\Utility\bin\Debug\Utility.pdb
+T:\CSharp\Tarell\Project4\Utility\obj\Debug\Utility.dll
+T:\CSharp\Tarell\Project4\Utility\obj\Debug\Utility.pdb
+F:\C#\Tarell\Project4\Utility\bin\Debug\Utility.dll
+F:\C#\Tarell\Project4\Utility\bin\Debug\Utility.pdb
+F:\C#\Tarell\Project4\Utility\obj\Debug\Utility.csprojResolveAssemblyReference.cache
+F:\C#\Tarell\Project4\Utility\obj\Debug\Utility.dll
+F:\C#\Tarell\Project4\Utility\obj\Debug\Utility.pdb
+E:\DCCCD\C#\Tarell\Project4\Utility\bin\Debug\Utility.dll
+E:\DCCCD\C#\Tarell\Project4\Utility\bin\Debug\Utility.pdb
+E:\DCCCD\C#\Tarell\Project4\Utility\obj\Debug\Utility.csprojResolveAssemblyReference.cache
+E:\DCCCD\C#\Tarell\Project4\Utility\obj\Debug\Utility.csproj.CoreCompileInputs.cache
+E:\DCCCD\C#\Tarell\Project4\Utility\obj\Debug\Utility.dll
+E:\DCCCD\C#\Tarell\Project4\Utility\obj\Debug\Utility.pdb

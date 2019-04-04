@@ -1,0 +1,17 @@
+F:\C#\Tarell\Program6\People\bin\Debug\People.dll
+F:\C#\Tarell\Program6\People\bin\Debug\People.pdb
+F:\C#\Tarell\Program6\People\obj\Debug\People.csprojResolveAssemblyReference.cache
+F:\C#\Tarell\Program6\People\obj\Debug\People.dll
+F:\C#\Tarell\Program6\People\obj\Debug\People.pdb
+E:\C#\Tarell\Program6\People\bin\Debug\People.dll
+E:\C#\Tarell\Program6\People\bin\Debug\People.pdb
+E:\C#\Tarell\Program6\People\obj\Debug\People.csprojResolveAssemblyReference.cache
+E:\C#\Tarell\Program6\People\obj\Debug\People.csproj.CoreCompileInputs.cache
+E:\C#\Tarell\Program6\People\obj\Debug\People.dll
+E:\C#\Tarell\Program6\People\obj\Debug\People.pdb
+E:\DCCCD\C#\Tarell\Program6\People\bin\Debug\People.dll
+E:\DCCCD\C#\Tarell\Program6\People\bin\Debug\People.pdb
+E:\DCCCD\C#\Tarell\Program6\People\obj\Debug\People.csprojResolveAssemblyReference.cache
+E:\DCCCD\C#\Tarell\Program6\People\obj\Debug\People.csproj.CoreCompileInputs.cache
+E:\DCCCD\C#\Tarell\Program6\People\obj\Debug\People.dll
+E:\DCCCD\C#\Tarell\Program6\People\obj\Debug\People.pdb

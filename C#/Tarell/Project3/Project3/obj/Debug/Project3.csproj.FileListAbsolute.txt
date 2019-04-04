@@ -1,0 +1,8 @@
+T:\CSharp\Tarell\Project3\Project3\bin\Debug\Project3.exe.config
+T:\CSharp\Tarell\Project3\Project3\bin\Debug\Project3.exe
+T:\CSharp\Tarell\Project3\Project3\bin\Debug\Project3.pdb
+T:\CSharp\Tarell\Project3\Project3\obj\Debug\Project3.csprojResolveAssemblyReference.cache
+T:\CSharp\Tarell\Project3\Project3\obj\Debug\Project3.exe
+T:\CSharp\Tarell\Project3\Project3\obj\Debug\Project3.pdb
+T:\CSharp\Tarell\Project3\Project3\bin\Debug\Utility.dll
+T:\CSharp\Tarell\Project3\Project3\bin\Debug\Utility.pdb
