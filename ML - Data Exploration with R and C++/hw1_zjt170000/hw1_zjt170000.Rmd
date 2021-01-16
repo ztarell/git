@@ -1,0 +1,95 @@
+---
+title: "Homework 1"
+author: "Zachary Tarell"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+# 1
+
+data(Boston)
+str(Boston)
+?Boston
+
+I recieved the data information after running the three lines above in the command prompt. There are 506 observations (rows) and 14 variables (columns) in each row. The entire data set is a description of housing values in the suburbs of Boston.
+
+# 2
+
+```{r}
+head(Boston)  # display first few rows
+tail(Boston, 2)   #	display the last 2 rows
+Boston[5,]    # display row 5
+head(Boston$crim)  # display the first few rows of column 1 by combining head() and indexing
+names(Boston)   #	display the variable names
+```
+
+# 3
+
+```{r}
+mean(Boston$crim) # mean crime column
+median(Boston$crim) # median crime column
+range(Boston$crim) # range crime column
+```
+
+# 4
+
+```{r}
+hist(Boston$crim, main="Crime in Boston", xlab="Crime Per Capita") # Histogram of crime in Boston
+```
+I gather from the data and the histogram of crime column that it shows very low crime per capita happen at higher frequency then that of high crime. Basically, Boston has a low crime rate.
+
+# 5
+
+```{r}
+cor(Boston$crim, Boston$medv)
+```
+This correlation of -.388 shows that crime and median household value move away from each other at about 39% of the time. This means that as the crime goes up, the household value goes down 39% of the time. This can be very useful in predicting the median household value by looking at the crime in that area.
+
+# 6
+
+```{r}
+plot(Boston$rm, Boston$medv, pch=21, col="red", cex=.75, main="Homes in Boston, MA", xlab="Average Rooms Per Household", ylab="Median Household Value in $1000's")
+cor(Boston$rm, Boston$medv)
+```
+The correlation and the graph tell us that around 70% of the time, the more rooms per house, the higher the price.
+
+# 7
+
+```{r}
+Boston$chas <- FALSE
+plot(Boston$chas, Boston$medv, xlab="chas", ylab="Median Value")
+is.factor(Boston$chas)
+Boston$chas <- as.factor(Boston$chas)
+plot(Boston$chas, Boston$medv, xlab="chas", ylab="Median Value")
+```
+The meaning of the two graphs and the chas factor is not 0 and 1, it's true or false. It doesn't have a correlation between it and the other data frames.
+
+# 8
+
+```{r}
+summary(Boston$rad)
+unique(Boston$rad)
+sum(Boston$rad==24)
+sum((Boston$rad==24) / nrow(Boston) * 100)
+```
+The index of accessibility to radial highways is how many different ways you can get to a highway from your house. 24 is the most, which usually means you are closer to downtown - where all the highways usually meet. The unique function shows the difference in the amount of ways you can get there. Since 8 is the highest number besides 24, you can sum up all the rad integers greater than 8 (or equal to 24) and you will get 132 - which is the number of houses that have 24. Then, by dividing that number by total rows (the number of houses) and multiplying it by 100 - you get 26.01%. That's the percentage of neighborhoods that have an index of 24 accessibilities to radial highways.
+
+# 9
+
+```{r}
+Boston$far <- ifelse(Boston$rad==24, TRUE, FALSE)
+Boston$far <- factor(Boston$far)
+plot(Boston$far, Boston$medv, xlab="far", ylab="Median Value")
+```
+This shows the further away you are from the city, the cheaper the houses are. The closer you are have a wider range and the most expensive neighborhoods.
+
+# 10
+
+```{r}
+summary(Boston[,c(1,6,13,14)]) # all rows and only columns 1, 6, 13, 14
+i = which.max(Boston$medv)
+Boston[i,c(1,6,13,14)]
+```
+This neighborhood has the highest median household value, the lowest population percentage, well below the average crime rate, and some of the most rooms per household in Boston. These are the rich elite people. If you wanted to buy a house in Boston, you go to this neighborhood first.
