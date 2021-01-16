@@ -1,0 +1,161 @@
+---
+title: "Homework 3"
+author: "Zachary Tarell"
+output: html_notebook
+---
+# This hw will create an R Script to run logistical regression and naive bayes
+# on the BreastCancer data set, which is part of the package mlbench.
+
+# 1
+```{r}
+library(mlbench)
+?BreastCancer
+data(BreastCancer)
+str(BreastCancer)
+head(BreastCancer)
+summary(BreastCancer$Class)
+```
+#a
+There are 699 variables
+#b
+Class is the target variable
+#c
+There are 9 predictors and they're type Integers
+#d
+Percent of malignant is 241/699 * 100
+
+# 2
+```{r}
+glm0 <- glm(formula = Class ~ Cell.size + Cell.shape, family = binomial, data=BreastCancer)
+```
+I believe this error message because the data is perfectly 0 or 1 and the ratio is too perfect to run the model.
+https://discuss.analyticsvidhya.com/t/glm-fit-fitted-probabilities-numerically-0-or-1-occurred-warning-message-when-i-run-logistic-regression/10390
+
+# 3
+```{r}
+summary(BreastCancer$Cell.size)
+summary(BreastCancer$Cell.shape)
+#a
+BreastCancer$Cell.small <- ifelse (BreastCancer$Cell.size == 1, 1, 0)
+summary(BreastCancer$Cell.small)
+#b
+BreastCancer$Cell.regular <- ifelse (BreastCancer$Cell.shape == 1, 1, 0)
+summary(BreastCancer$Cell.regular)
+```
+I don't think that putting them as a 0 or 1 takes away from finding out different data about the big or small sizes because there is only 2 ways of seeing them now.
+
+# 4
+```{r}
+attach(BreastCancer)
+par(mfrow=c(1,2))
+cdplot(Class~Cell.size, main="Cell Size")
+cdplot(Class~Cell.shape, main="Cell Shape")
+```
+The size and shape in malignance correlate very well with each other. The smaller the tumor the more benign and opposite for the other. The cut-off points at 1 are justified because it doesn't goes past one.
+
+# 5
+```{r}
+par(mfrow=c(1,2))
+plot(Class~Cell.small, main="Cell Small")
+plot(Class~Cell.regular, main="Cell Regular")
+cdplot(Class~Cell.small, main="Cell Small")
+cdplot(Class~Cell.regular, main="Cell Regular")
+smallSum <- sum(Cell.small == 1)
+notSmallSum <- sum(Cell.small == 0)
+regSum <- sum(Cell.regular == 1)
+notRegSum <- sum(Cell.regular == 0)
+sSum <- sum(Cell.small == 1 & Class == "malignant")
+nsSum <- sum(Cell.small == 0 & Class == "malignant")
+rSum <- sum(Cell.regular == 1 & Class == "malignant")
+nrSum <- sum(Cell.regular == 0 & Class == "malignant")
+#a
+print(paste("Percentage of small and malignant is ", sSum/smallSum*100))
+#b
+print(paste("Percentage of not small and malignant is ", nsSum/notSmallSum*100))
+#c
+print(paste("Percentage of regular and malignant is ", rSum/regSum*100))
+#d
+print(paste("Percentage of not regular and malignant is ", nrSum/notRegSum*100))
+```
+
+
+# 6
+```{r}
+set.seed(1234)
+i <- sample(1:nrow(BreastCancer), 0.80*nrow(BreastCancer), replace=FALSE)
+train <- BreastCancer[i,]
+test <- BreastCancer[-i,]
+```
+
+# 7
+```{r}
+glm1 <- glm(Class~Cell.small + Cell.regular, data = train, family = "binomial")
+summary(glm1)
+#a
+print(paste("The small and regular predictors seem to be very good because they have extremely low p-value."))
+#b
+print(paste("The null deviance is measured to be lack of fit for y-intercept. The residual deviance is lack of fit for entire model. This is a good model becuase it's better to see the Residual deviance lower than the Null deviance."))
+#c
+print(paste("The AIC is useful in comparing models. It penalizes more complex models and is based on deviance."))
+```
+
+# 8
+```{r}
+probs <- predict(glm1, newdata = test, type="response")
+pred <- ifelse (probs>0.5, 2, 1)
+acc1 <- mean(pred==as.integer(test$Class))
+print(paste("glm1 accuracy is ", acc1))
+library(caret)
+preds <- factor(ifelse(probs>0.5, "malignant", "benign"))
+confusionMatrix(preds, reference=test$Class)
+```
+The confusion matrix requires that the factors have exactly the same levels. For two class problems, the sensitivity, specificity, positive predictive value and negative predictive value is calculated using the positive argument. For more than two classes, these results are calculated comparing each factor level to the remaining levels (i.e. a 'one vs all' approach). In each case, the overall accuracy and Kappa statistic are calculated. The overall accuracy rate is computed along with a 95 percent confidence interval for this rate (using binom.test) and a one-sided test to see if the accuracy is better than the 'no information rate,' which is taken to be the largest class percentage in the data.
+
+# 9
+```{r}
+coEF1 <- glm1$coefficients[2]
+#a
+print(paste("The coefficient of Cell.small is ", coEF1))
+#b
+print(paste("The coefficient of small is negative so it has a negative correlation between Cell.small and the chance of BreastCancer being malignant."))
+#c
+exp(coEF1)/(1+exp(coEF1))
+#d
+glm2 <- glm(Class~Cell.small+Cell.regular, data=BreastCancer, family="binomial")
+coEF2 <- glm2$coefficients[2]
+exp(coEF2)/(1+exp(coEF2))
+print(paste("The estimated probability of malignancy is .00916643"))
+print(paste("The malignancy over all BreastCancer is .01728389"))
+print(paste("They are close in the sense that they are both small, but one is double the other. I think the data set is too small to get a proper understanding."))
+```
+
+# 10
+```{r}
+glm_small <- glm(Class~Cell.small, data=train, family="binomial")
+glm_regular <- glm(Class~Cell.regular, data=train, family="binomial")
+anova(glm_small, glm_regular, glm1)
+AIC(glm_small, glm_regular, glm1)
+```
+The AIC scores are interpreted by the smaller the better.The theory of AIC requires that the log-likelihood has been maximized: whereas AIC can be computed for models not fitted by maximum likelihood, their AIC values should not be compared.
+
+# 11
+```{r}
+library(e1071)
+nb1 <- naiveBayes(Class~Cell.small+Cell.regular, data=train)
+nb1
+#a
+print(paste("The percentage of training data that is benign is 65.29517"))
+#b
+print(paste("The likelihood that a malignant sample is not small is 98.969072"))
+#c
+print(paste("The likelihood that a malignant sample is not regular is 98.969072"))
+```
+
+
+# 12
+```{r}
+raw <- predict(nb1, newdata=test, type="raw")
+pred2 <- predict(nb1, newdata=test, type="class")
+confusionMatrix(pred2, test$Class)
+```
+The results for both models are the same. I think they're the same because they both use binomial sets. 
