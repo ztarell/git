@@ -1,0 +1,151 @@
+---
+title: "Homework 2 - Linear Regression"
+author: "Zachary Tarell"
+output: html_notebook
+---
+# Part 1
+# 1
+
+```{r}
+# ISLR load package first
+names(Auto)
+summary(Auto)
+set.seed(1234)
+i <- sample(1:nrow(Auto), 0.75*nrow(Auto), replace=FALSE)
+train <- Auto[i,]
+test <- Auto[-i,]
+```
+
+# 2
+
+```{r}
+lm1 <- lm(formula=mpg~horsepower, data=train)
+lm1
+summary(lm1)
+pred <- predict(lm1, newdata=test)
+mse <- mean((pred - lm1$residuals)^2)
+print(paste("mse: ", mse))
+```
+
+# 3
+#a.	Write the equation from the model , filling in the parameters w, b
+-0.1567 = sum((horespower - horsepower_mean)*(mpg - mpg_mean)) / sum((horsepower - horsepower_mean)^2)
+39.6486 = mpg_mean - (-0.1567) * mpg_mean
+#b.	Is there a strong relationship between horsepower and mpg? 
+No because -.15 is not strong
+#c.	Is it a positive or negative correlation?
+Negative
+#d.	Comment on the RSE, R^2, and F-statistic
+RSE - Residual Standard Error is 4.853 on 292 degrees of freedom. The number compare to y-values and error is high.
+R^2 - Is will be between 0 and 1. Closer to one, more accurate the model.
+F-Stastic - is greater than 1 and the p-value is very low meaning, confidence in the model.
+#e.	Comment on the MSE
+This averages the squared difference between the actual values (y) and the predicted
+values (y-hat) over all elements in the test set. The smaller the mse the better. So, in this model it's bad at predicting the line of best fit.
+
+# 4
+
+```{r}
+plot(train$mpg~train$horsepower, xlab="Horsepower", ylab="MPG")
+abline(lm1, col="blue")
+print (paste("The predicted value of MPG when horsepower is 98: ", predict(lm1, data.frame(horsepower=98))))
+```
+Based on the pred_value, this car will have on average 24.292 mpg with 98 horsepower.
+
+# 5
+
+```{r}
+mseTest <- mean((pred - test$mpg)^2)
+print (paste("Correlation predicted and test$mpg: ", cor(pred, test$mpg)))
+print (paste("MSE of test: ", mseTest))
+```
+The mse of the test data is much lower than the mse of the training data, ~610 vs ~25, meaning that the test data has much less variance.
+
+# 6
+
+```{r}
+par(mfrow=c(2,2))
+plot(lm1)
+```
+Yes, there is non-linearity from the graphs because they have no straight lines.
+
+# 7
+
+```{r}
+lm2 <- lm(formula=log(mpg)~horsepower, data=train)
+summary(lm2)
+```
+The train data is more aligned to the log data then the test data for R^2. So, lm1 is less accurate than lm2.
+
+# 8
+
+```{r}
+plot(formula=log(mpg)~horsepower, data=train)
+abline(lm2, col="blue")
+```
+The line fits the data well. It is in a negative direction, but is averaged well.
+
+# 9
+
+```{r}
+pred2 <- predict(lm2, newdata=test)
+correlation2 <- cor(pred2, log(test$mpg))
+mse2 <- mean((pred2 - log(test$mpg)^2))
+print(paste("Correlation for lm2: ", correlation2))
+print(paste("MSE for lm2: ", mse2))
+```
+The first correlation was .7642 while the correlation for this prediction was .8149, which means that this correlation is strong than the first and also positive.This mse is much less than the mse for the first linear model, meaning this graph should be much more accurate.
+
+# 10
+
+```{r}
+par(mfrow=c(2,2))
+plot(lm2)
+```
+The 2 different set of plots look relatively similar, however the plots for lm2 seem much closer to being horizontal. 
+
+# Part 2
+# 1
+
+```{r}
+pairs(Auto)
+```
+In the scatterplot you see that mpg vs displacement, mpg vs horsepower, and mpg vs weight all have a NEGATIVE correlation.
+While displacement vs horsepower, displacement vs weight all have strong POSITIVE correlation and mpg vs year also has a positive correlation however it is not as strong as the others.
+
+# 2 
+
+```{r}
+Auto$name <- NULL
+cor(Auto,method=c("pearson"))
+```
+The two strongest positive correlations: cylinders vs displacement, displacement vs weight
+The two strongest negative correlations: mpg vs displacement, mpg vs weight 
+
+# 3
+
+```{r}
+origin <- factor(Auto$origin) 
+lm3 <- lm(formula = mpg~cylinders+displacement+horsepower+weight+acceleration+year+origin, data = train)
+summary(lm3)
+```
+Based on the summary there seems to be 3 variables that have the highest impact on the data, which are weight, year, and origin.
+
+# 4
+
+```{r}
+par(mfrow=c(2,2))
+plot(lm3)
+train[14,]
+```
+The seems to be 3 leverage points based on the graph, which are points 14, 327, and 387
+
+# 5
+
+```{r}
+lm.fit <- lm(mpg~displacement*weight*year*horsepower,data= train)
+summary(lm.fit)
+anova(lm3,lm.fit)
+```
+Using displacement*weight*year*horsepower gave me a R^2 of .8808 which is greater than the R^2 of lm3 which was .8329.
+After running anova on the 2 models I do believe the one I created was better due to the fact it had a LOWER residual sum of squares, meaning the distance from the actual values to the predicted values were lower than that of lm3.
