@@ -1,0 +1,14 @@
+{
+    "name": "Zach Tarell",
+    "short_name": "Zach Tarell",
+    "icons": [
+        {
+            "src": "/android-chrome-144x144.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#a09797",
+    "background_color": "#a09797",
+    "display": "standalone"
+}
