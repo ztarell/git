@@ -1,0 +1,214 @@
+============================== Prover9 ===============================
+Prover9 (64) version 2009-11A, November 2009.
+Process 6989 was started by zjt170000 on cslinux2.utdallas.edu,
+Tue Nov 17 22:48:44 2020
+The command was "./bin/prover9 -f hw3_zjt170000_a.in".
+============================== end of head ===========================
+
+============================== INPUT =================================
+
+% Reading from file hw3_zjt170000_a.in
+
+
+formulas(sos).
+(all x (Tomato(x) -> FoodItem(x))).
+(all x (Tomato(x) -> Veggie(x))).
+(all x (Veggie(x) -> Item(x))).
+(all x (Beef(x) -> Meat(x))).
+(all x (Meat(x) -> FoodItem(x))).
+(all x (Deaodorant(x) -> PersonalCare(x))).
+(all x (PersonalCare(x) -> Item(x))).
+(all x all y (Eats(x,y) & FoodItem(y) & Meat(y) -> -Vegetarian(x))).
+Customer(John).
+(all x all y all q (SuperMarket(x) & Item(y) & Owns(x,y,q) & Quantity(q) -> Sells(x,y,q))).
+Has(x,y,q).
+(all x all y all q (Buys(x,y,q) & Item(y) -> Owns(x,y,q))).
+(all x all y all q (Buys(x,y,q) & FoodItem(y) -> Eats(x,y))).
+(all x all y all q (Buys(x,y,q) & HasMoney(a,m1) & Money(m1) -> HasMoney(x,m2) & Money(m2) & LessThan(m2,m1))).
+Location(Safeway,NorthBerkeley).
+(all x (Customer(x) -> Child(x) | Adult(x))).
+(all x all y all q (Buys(x,y,z) & FoodItem(y) & Buys(x,y,q) -> Adult(x))).
+Quantity(3).
+(all x (Customer(x) & Quantity(3) -> Adult(x) & -Child(x))).
+end_of_list.
+
+formulas(goals).
+Adult(John).
+end_of_list.
+
+============================== end of input ==========================
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 (all x (Tomato(x) -> FoodItem(x))) # label(non_clause).  [assumption].
+2 (all x (Tomato(x) -> Veggie(x))) # label(non_clause).  [assumption].
+3 (all x (Veggie(x) -> Item(x))) # label(non_clause).  [assumption].
+4 (all x (Beef(x) -> Meat(x))) # label(non_clause).  [assumption].
+5 (all x (Meat(x) -> FoodItem(x))) # label(non_clause).  [assumption].
+6 (all x (Deaodorant(x) -> PersonalCare(x))) # label(non_clause).  [assumption].
+7 (all x (PersonalCare(x) -> Item(x))) # label(non_clause).  [assumption].
+8 (all x all y (Eats(x,y) & FoodItem(y) & Meat(y) -> -Vegetarian(x))) # label(non_clause).  [assumption].
+9 (all x all y all q (SuperMarket(x) & Item(y) & Owns(x,y,q) & Quantity(q) -> Sells(x,y,q))) # label(non_clause).  [assumption].
+10 (all x all y all q (Buys(x,y,q) & Item(y) -> Owns(x,y,q))) # label(non_clause).  [assumption].
+11 (all x all y all q (Buys(x,y,q) & FoodItem(y) -> Eats(x,y))) # label(non_clause).  [assumption].
+12 (all x all y all q (Buys(x,y,q) & HasMoney(a,m1) & Money(m1) -> HasMoney(x,m2) & Money(m2) & LessThan(m2,m1))) # label(non_clause).  [assumption].
+13 (all x (Customer(x) -> Child(x) | Adult(x))) # label(non_clause).  [assumption].
+14 (all x all y all q (Buys(x,y,z) & FoodItem(y) & Buys(x,y,q) -> Adult(x))) # label(non_clause).  [assumption].
+15 (all x (Customer(x) & Quantity(3) -> Adult(x) & -Child(x))) # label(non_clause).  [assumption].
+16 Adult(John) # label(non_clause) # label(goal).  [goal].
+
+============================== end of process non-clausal formulas ===
+
+============================== PROCESS INITIAL CLAUSES ===============
+
+% Clauses before input processing:
+
+formulas(usable).
+end_of_list.
+
+formulas(sos).
+-Tomato(x) | FoodItem(x).  [clausify(1)].
+-Tomato(x) | Veggie(x).  [clausify(2)].
+-Veggie(x) | Item(x).  [clausify(3)].
+-Beef(x) | Meat(x).  [clausify(4)].
+-Meat(x) | FoodItem(x).  [clausify(5)].
+-Deaodorant(x) | PersonalCare(x).  [clausify(6)].
+-PersonalCare(x) | Item(x).  [clausify(7)].
+-Eats(x,y) | -FoodItem(y) | -Meat(y) | -Vegetarian(x).  [clausify(8)].
+Customer(John).  [assumption].
+-SuperMarket(x) | -Item(y) | -Owns(x,y,z) | -Quantity(z) | Sells(x,y,z).  [clausify(9)].
+Has(x,y,q).  [assumption].
+-Buys(x,y,z) | -Item(y) | Owns(x,y,z).  [clausify(10)].
+-Buys(x,y,z) | -FoodItem(y) | Eats(x,y).  [clausify(11)].
+-Buys(x,y,z) | -HasMoney(a,m1) | -Money(m1) | HasMoney(x,m2).  [clausify(12)].
+-Buys(x,y,z) | -HasMoney(a,m1) | -Money(m1) | Money(m2).  [clausify(12)].
+-Buys(x,y,z) | -HasMoney(a,m1) | -Money(m1) | LessThan(m2,m1).  [clausify(12)].
+Location(Safeway,NorthBerkeley).  [assumption].
+-Customer(x) | Child(x) | Adult(x).  [clausify(13)].
+-Buys(x,y,z) | -FoodItem(y) | -Buys(x,y,u) | Adult(x).  [clausify(14)].
+Quantity(3).  [assumption].
+-Customer(x) | -Quantity(3) | Adult(x).  [clausify(15)].
+-Customer(x) | -Quantity(3) | -Child(x).  [clausify(15)].
+-Adult(John).  [deny(16)].
+end_of_list.
+
+formulas(demodulators).
+end_of_list.
+
+============================== PREDICATE ELIMINATION =================
+
+Eliminating Tomato/1
+
+Eliminating Veggie/1
+
+Eliminating Beef/1
+
+Eliminating Meat/1
+
+Eliminating Deaodorant/1
+
+Eliminating PersonalCare/1
+
+Eliminating Customer/1
+17 -Customer(x) | Child(x) | Adult(x).  [clausify(13)].
+18 Customer(John).  [assumption].
+Derived: Child(John) | Adult(John).  [resolve(17,a,18,a)].
+19 -Customer(x) | -Quantity(3) | Adult(x).  [clausify(15)].
+Derived: -Quantity(3) | Adult(John).  [resolve(19,a,18,a)].
+20 -Customer(x) | -Quantity(3) | -Child(x).  [clausify(15)].
+Derived: -Quantity(3) | -Child(John).  [resolve(20,a,18,a)].
+
+Eliminating SuperMarket/1
+
+Eliminating Has/3
+
+Eliminating Item/1
+
+Eliminating FoodItem/1
+
+Eliminating Buys/3
+
+Eliminating Location/2
+
+Eliminating Quantity/1
+21 -Quantity(3) | Adult(John).  [resolve(19,a,18,a)].
+22 Quantity(3).  [assumption].
+Derived: Adult(John).  [resolve(21,a,22,a)].
+23 -Quantity(3) | -Child(John).  [resolve(20,a,18,a)].
+Derived: -Child(John).  [resolve(23,a,22,a)].
+
+Eliminating Adult/1
+24 Child(John) | Adult(John).  [resolve(17,a,18,a)].
+25 -Adult(John).  [deny(16)].
+Derived: Child(John).  [resolve(24,b,25,a)].
+26 Adult(John).  [resolve(21,a,22,a)].
+Derived: $F.  [resolve(26,a,25,a)].
+
+Eliminating Child/1
+27 Child(John).  [resolve(24,b,25,a)].
+28 -Child(John).  [resolve(23,a,22,a)].
+
+============================== end predicate elimination =============
+
+Auto_denials:  (no changes).
+
+Term ordering decisions:
+Predicate symbol precedence:  predicate_order([ ]).
+Function symbol precedence:  function_order([ ]).
+After inverse_order:  (no changes).
+Unfolding symbols: (none).
+
+Auto_inference settings:
+  % set(neg_binary_resolution).  % (HNE depth_diff=0)
+  % clear(ordered_res).  % (HNE depth_diff=0)
+  % set(ur_resolution).  % (HNE depth_diff=0)
+    % set(ur_resolution) -> set(pos_ur_resolution).
+    % set(ur_resolution) -> set(neg_ur_resolution).
+
+Auto_process settings:  (no changes).
+
+
+============================== PROOF =================================
+
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 9.
+% Level of proof is 4.
+% Maximum clause weight is 0.000.
+% Given clauses 0.
+
+15 (all x (Customer(x) & Quantity(3) -> Adult(x) & -Child(x))) # label(non_clause).  [assumption].
+16 Adult(John) # label(non_clause) # label(goal).  [goal].
+18 Customer(John).  [assumption].
+19 -Customer(x) | -Quantity(3) | Adult(x).  [clausify(15)].
+21 -Quantity(3) | Adult(John).  [resolve(19,a,18,a)].
+22 Quantity(3).  [assumption].
+25 -Adult(John).  [deny(16)].
+26 Adult(John).  [resolve(21,a,22,a)].
+29 $F.  [resolve(26,a,25,a)].
+
+============================== end of proof ==========================
+
+============================== STATISTICS ============================
+
+Given=0. Generated=1. Kept=0. proofs=1.
+Usable=0. Sos=0. Demods=0. Limbo=0, Disabled=30. Hints=0.
+Kept_by_rule=0, Deleted_by_rule=0.
+Forward_subsumed=0. Back_subsumed=0.
+Sos_limit_deleted=0. Sos_displaced=0. Sos_removed=0.
+New_demodulators=0 (0 lex), Back_demodulated=0. Back_unit_deleted=0.
+Demod_attempts=0. Demod_rewrites=0.
+Res_instance_prunes=0. Para_instance_prunes=0. Basic_paramod_prunes=0.
+Nonunit_fsub_feature_tests=0. Nonunit_bsub_feature_tests=0.
+Megabytes=0.06.
+User_CPU=0.01, System_CPU=0.00, Wall_clock=0.
+
+============================== end of statistics =====================
+
+============================== end of search =========================
+
+THEOREM PROVED
+
+Exiting with 1 proof.
+
+Process 6989 exit (max_proofs) Tue Nov 17 22:48:44 2020

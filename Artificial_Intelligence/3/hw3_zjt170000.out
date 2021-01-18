@@ -1,0 +1,44 @@
+============================== Prover9 ===============================
+Prover9 (64) version 2009-11A, November 2009.
+Process 25801 was started by zjt170000 on cslinux2.utdallas.edu,
+Tue Nov 17 23:09:11 2020
+The command was "./bin/prover9 -f hw3_zjt170000.in".
+============================== end of head ===========================
+
+============================== INPUT =================================
+
+% Reading from file hw3_zjt170000.in
+
+
+formulas(sos).
+(all x (Tomato(x) -> FoodItem(x))).
+(all x (Tomato(x) -> Veggie(x))).
+(all x (Veggie(x) -> Item(x))).
+(all x (Beef(x) -> Meat(x))).
+(all x (Meat(x) -> FoodItem(x))).
+(all x (Deaodorant(x) -> PersonalCare(x))).
+(all x (PersonalCare(x) -> Item(x))).
+(all x all y (Eats(x,y) & FoodItem(y) & Meat(y) -> -Vegetarian(x))).
+Customer(John).
+(all x all y all q (SuperMarket(x) & Item(y) & Owns(x,y,q) & Quantity(q) -> Sells(x,y,q))).
+Has(x,y,q).
+(all x all y all q (Buys(x,y,q) & Item(y) -> Owns(x,y,q))).
+(all x all y all q (Buys(x,y,q) & FoodItem(y) -> Eats(x,y))).
+(all x all y all q (Buys(x,y,q) & HasMoney(a,m1) & Money(m1) -> HasMoney(x,m2) & Money(m2) & LessThan(m2,m1))).
+Location(Safeway,NorthBerkeley).
+(all x all y all q (Buys(x,y,q) & FoodItem(y) & Buys(x,y,q) -> Adult(x))).
+Tomatoweight(2).
+Beefweight(1).
+assign(max_weight,3).
+(all x (Customer(x) & max_weight(3) -> Adult(x))).
+(all x (Adult(x) -> -Child(x))).
+end_of_list.
+
+formulas(goals).
+Owns(John,Tomatoes,2).
+end_of_list.
+%%ERROR: The following symbols are used with multiple arities: max_weight/1, max_weight/0.
+
+
+Fatal error:  The following symbols are used with multiple arities: max_weight/1, max_weight/0
+

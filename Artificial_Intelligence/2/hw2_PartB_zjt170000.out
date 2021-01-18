@@ -1,0 +1,190 @@
+============================== Prover9 ===============================
+Prover9 (64) version 2009-11A, November 2009.
+Process 32013 was started by zjt170000 on cslinux2.utdallas.edu,
+Sat Oct 17 16:48:48 2020
+The command was "./bin/prover9 -f hw2_zjt170000.in".
+============================== end of head ===========================
+
+============================== INPUT =================================
+
+% Reading from file hw2_zjt170000.in
+
+
+formulas(sos).
+(all x ((exists y (Pizza(y) & Eats(x,y))) -> Happy(x))).
+(all x (Foodie(x) -> (exists y (Pizza(y) | Salad(y))) & Eats(x,y))).
+(all x ((exists y (Salad(y) & Eats(x,y))) -> Healthy(x))).
+(all x (Healthy(x) -> Gyms(x))).
+(all x all y (Nice(x) & Happy(y) -> -Dated(x,y))).
+Nice(Ann).
+Foodie(Peter).
+end_of_list.
+
+formulas(goals).
+-Gyms(Peter) -> -Dated(Ann,Peter).
+end_of_list.
+
+============================== end of input ==========================
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 (all x ((exists y (Pizza(y) & Eats(x,y))) -> Happy(x))) # label(non_clause).  [assumption].
+2 (all x (Foodie(x) -> (exists y (Pizza(y) | Salad(y))) & Eats(x,y))) # label(non_clause).  [assumption].
+3 (all x ((exists y (Salad(y) & Eats(x,y))) -> Healthy(x))) # label(non_clause).  [assumption].
+4 (all x (Healthy(x) -> Gyms(x))) # label(non_clause).  [assumption].
+5 (all x all y (Nice(x) & Happy(y) -> -Dated(x,y))) # label(non_clause).  [assumption].
+6 -Gyms(Peter) -> -Dated(Ann,Peter) # label(non_clause) # label(goal).  [goal].
+
+============================== end of process non-clausal formulas ===
+
+============================== PROCESS INITIAL CLAUSES ===============
+
+% Clauses before input processing:
+
+formulas(usable).
+end_of_list.
+
+formulas(sos).
+-Pizza(x) | -Eats(y,x) | Happy(y).  [clausify(1)].
+-Foodie(x) | Pizza(f1(y,x)) | Salad(f1(y,x)).  [clausify(2)].
+-Foodie(x) | Eats(x,y).  [clausify(2)].
+-Salad(x) | -Eats(y,x) | Healthy(y).  [clausify(3)].
+-Healthy(x) | Gyms(x).  [clausify(4)].
+-Nice(x) | -Happy(y) | -Dated(x,y).  [clausify(5)].
+Nice(Ann).  [assumption].
+Foodie(Peter).  [assumption].
+-Gyms(Peter).  [deny(6)].
+Dated(Ann,Peter).  [deny(6)].
+end_of_list.
+
+formulas(demodulators).
+end_of_list.
+
+============================== PREDICATE ELIMINATION =================
+
+Eliminating Pizza/1
+7 -Foodie(x) | Pizza(f1(y,x)) | Salad(f1(y,x)).  [clausify(2)].
+8 -Pizza(x) | -Eats(y,x) | Happy(y).  [clausify(1)].
+Derived: -Foodie(x) | Salad(f1(y,x)) | -Eats(z,f1(y,x)) | Happy(z).  [resolve(7,b,8,a)].
+
+Eliminating Foodie/1
+9 Foodie(Peter).  [assumption].
+10 -Foodie(x) | Eats(x,y).  [clausify(2)].
+Derived: Eats(Peter,x).  [resolve(9,a,10,a)].
+11 -Foodie(x) | Salad(f1(y,x)) | -Eats(z,f1(y,x)) | Happy(z).  [resolve(7,b,8,a)].
+Derived: Salad(f1(x,Peter)) | -Eats(y,f1(x,Peter)) | Happy(y).  [resolve(11,a,9,a)].
+
+Eliminating Salad/1
+12 Salad(f1(x,Peter)) | -Eats(y,f1(x,Peter)) | Happy(y).  [resolve(11,a,9,a)].
+13 -Salad(x) | -Eats(y,x) | Healthy(y).  [clausify(3)].
+Derived: -Eats(x,f1(y,Peter)) | Happy(x) | -Eats(z,f1(y,Peter)) | Healthy(z).  [resolve(12,a,13,a)].
+
+Eliminating Healthy/1
+14 -Eats(x,f1(y,Peter)) | Happy(x) | -Eats(z,f1(y,Peter)) | Healthy(z).  [resolve(12,a,13,a)].
+15 -Healthy(x) | Gyms(x).  [clausify(4)].
+Derived: -Eats(x,f1(y,Peter)) | Happy(x) | -Eats(z,f1(y,Peter)) | Gyms(z).  [resolve(14,d,15,a)].
+
+Eliminating Nice/1
+16 Nice(Ann).  [assumption].
+17 -Nice(x) | -Happy(y) | -Dated(x,y).  [clausify(5)].
+Derived: -Happy(x) | -Dated(Ann,x).  [resolve(16,a,17,a)].
+
+Eliminating Gyms/1
+18 -Eats(x,f1(y,Peter)) | Happy(x) | -Eats(z,f1(y,Peter)) | Gyms(z).  [resolve(14,d,15,a)].
+19 -Gyms(Peter).  [deny(6)].
+Derived: -Eats(x,f1(y,Peter)) | Happy(x) | -Eats(Peter,f1(y,Peter)).  [resolve(18,d,19,a)].
+
+Eliminating Dated/2
+20 -Happy(x) | -Dated(Ann,x).  [resolve(16,a,17,a)].
+21 Dated(Ann,Peter).  [deny(6)].
+Derived: -Happy(Peter).  [resolve(20,b,21,a)].
+
+Eliminating Happy/1
+22 -Happy(Peter).  [resolve(20,b,21,a)].
+23 -Eats(x,f1(y,Peter)) | Happy(x) | -Eats(Peter,f1(y,Peter)).  [resolve(18,d,19,a)].
+Derived: -Eats(Peter,f1(x,Peter)) | -Eats(Peter,f1(x,Peter)).  [resolve(22,a,23,b)].
+
+============================== end predicate elimination =============
+
+Auto_denials:  (no changes).
+
+Term ordering decisions:
+Predicate symbol precedence:  predicate_order([ Eats ]).
+Function symbol precedence:  function_order([ Peter, f1 ]).
+After inverse_order:  (no changes).
+Unfolding symbols: (none).
+
+Auto_inference settings:
+  % set(neg_binary_resolution).  % (HNE depth_diff=0)
+  % clear(ordered_res).  % (HNE depth_diff=0)
+  % set(ur_resolution).  % (HNE depth_diff=0)
+    % set(ur_resolution) -> set(pos_ur_resolution).
+    % set(ur_resolution) -> set(neg_ur_resolution).
+
+Auto_process settings:
+  % set(unit_deletion).  % (Horn set with negative nonunits)
+
+kept:      24 Eats(Peter,x).  [resolve(9,a,10,a)].
+           25 -Eats(Peter,f1(x,Peter)) | -Eats(Peter,f1(x,Peter)).  [resolve(22,a,23,b)].
+
+============================== PROOF =================================
+
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 26.
+% Level of proof is 8.
+% Maximum clause weight is 3.000.
+% Given clauses 0.
+
+1 (all x ((exists y (Pizza(y) & Eats(x,y))) -> Happy(x))) # label(non_clause).  [assumption].
+2 (all x (Foodie(x) -> (exists y (Pizza(y) | Salad(y))) & Eats(x,y))) # label(non_clause).  [assumption].
+3 (all x ((exists y (Salad(y) & Eats(x,y))) -> Healthy(x))) # label(non_clause).  [assumption].
+4 (all x (Healthy(x) -> Gyms(x))) # label(non_clause).  [assumption].
+5 (all x all y (Nice(x) & Happy(y) -> -Dated(x,y))) # label(non_clause).  [assumption].
+6 -Gyms(Peter) -> -Dated(Ann,Peter) # label(non_clause) # label(goal).  [goal].
+7 -Foodie(x) | Pizza(f1(y,x)) | Salad(f1(y,x)).  [clausify(2)].
+8 -Pizza(x) | -Eats(y,x) | Happy(y).  [clausify(1)].
+9 Foodie(Peter).  [assumption].
+10 -Foodie(x) | Eats(x,y).  [clausify(2)].
+11 -Foodie(x) | Salad(f1(y,x)) | -Eats(z,f1(y,x)) | Happy(z).  [resolve(7,b,8,a)].
+12 Salad(f1(x,Peter)) | -Eats(y,f1(x,Peter)) | Happy(y).  [resolve(11,a,9,a)].
+13 -Salad(x) | -Eats(y,x) | Healthy(y).  [clausify(3)].
+14 -Eats(x,f1(y,Peter)) | Happy(x) | -Eats(z,f1(y,Peter)) | Healthy(z).  [resolve(12,a,13,a)].
+15 -Healthy(x) | Gyms(x).  [clausify(4)].
+16 Nice(Ann).  [assumption].
+17 -Nice(x) | -Happy(y) | -Dated(x,y).  [clausify(5)].
+18 -Eats(x,f1(y,Peter)) | Happy(x) | -Eats(z,f1(y,Peter)) | Gyms(z).  [resolve(14,d,15,a)].
+19 -Gyms(Peter).  [deny(6)].
+20 -Happy(x) | -Dated(Ann,x).  [resolve(16,a,17,a)].
+21 Dated(Ann,Peter).  [deny(6)].
+22 -Happy(Peter).  [resolve(20,b,21,a)].
+23 -Eats(x,f1(y,Peter)) | Happy(x) | -Eats(Peter,f1(y,Peter)).  [resolve(18,d,19,a)].
+24 Eats(Peter,x).  [resolve(9,a,10,a)].
+25 -Eats(Peter,f1(x,Peter)) | -Eats(Peter,f1(x,Peter)).  [resolve(22,a,23,b)].
+26 $F.  [copy(25),merge(b),unit_del(a,24)].
+
+============================== end of proof ==========================
+
+============================== STATISTICS ============================
+
+Given=0. Generated=2. Kept=1. proofs=1.
+Usable=0. Sos=0. Demods=0. Limbo=1, Disabled=19. Hints=0.
+Kept_by_rule=0, Deleted_by_rule=0.
+Forward_subsumed=0. Back_subsumed=0.
+Sos_limit_deleted=0. Sos_displaced=0. Sos_removed=0.
+New_demodulators=0 (0 lex), Back_demodulated=0. Back_unit_deleted=0.
+Demod_attempts=0. Demod_rewrites=0.
+Res_instance_prunes=0. Para_instance_prunes=0. Basic_paramod_prunes=0.
+Nonunit_fsub_feature_tests=0. Nonunit_bsub_feature_tests=0.
+Megabytes=0.04.
+User_CPU=0.01, System_CPU=0.00, Wall_clock=0.
+
+============================== end of statistics =====================
+
+============================== end of search =========================
+
+THEOREM PROVED
+
+Exiting with 1 proof.
+
+Process 32013 exit (max_proofs) Sat Oct 17 16:48:48 2020

@@ -1,0 +1,25 @@
+formulas(sos).
+  all x (Tomato(x) -> FoodItem(x)).
+  all x (Tomato(x) -> Veggie(x)).
+  all x (Veggie(x) -> Item(x)).
+  all x (Beef(x) -> Meat(x)).
+  all x (Meat(x) -> FoodItem(x)).
+  all x (Deaodorant(x) -> PersonalCare(x)).
+  all x (PersonalCare(x) -> Item(x)).
+  all x all y (Eats(x,y) & FoodItem(y) & Meat(y) -> -Vegetarian(x)).
+  Customer(John).
+  all x all y all q (SuperMarket(x) & Item(y) & Owns(x,y,q) & Quantity(q) -> Sells(x,y,q)).
+  Has(x,y,q).
+  all x all y all q (Buys(x,y,q) & Item(y) -> Owns(x,y,q)).
+  all x all y all q (Buys(x,y,q) & FoodItem(y) -> Eats(x,y)).
+  all x all y all q (Buys(x,y,q) & HasMoney(a,m1) & Money(m1) -> HasMoney(x,m2) & Money(m2) & LessThan(m2,m1)).
+  Location(Safeway,NorthBerkeley).
+  all x (Customer(x) -> Child(x) | Adult(x)).
+  all x all y all q (Buys(x,y,z) & FoodItem(y) & Buys(x,y,q) -> Adult(x)).
+  Quantity(3).
+  all x (Customer(x) & Quantity(3) -> Adult(x) & -Child(x)).
+end_of_list.
+
+formulas(goals).
+  Adult(John).
+end_of_list.
